@@ -1,0 +1,33 @@
+{
+  "name": "node-red-contrib-nano-tts",
+  "node-red": {
+    "nodes": {
+      "nano-tts": "nano-tts/nano-tts.js"
+    }
+  },
+  "main": "nano-tts/nano-tts.js",
+  "os": [
+    "linux"
+  ],
+  "version": "0.0.1",
+  " description": "This node produces a WAV file or PCM buffer of the text in `msg.payload` as read out by the Pico-TTS binary from SVOX. This can either be played back locally or passed on for playback elsewhere.",
+  "scripts": {
+    "test": "grunt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clickworkorange/node-red-contrib-nano-tts.git"
+  },
+  "keywords": [
+    "node-red",
+    "TTS",
+    "text to speech"
+  ],
+  "author": "Ola Tuvesson",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/clickworkorange/node-red-contrib-nano-tts/issues"
+  },
+  "homepage": "https://github.com/clickworkorange/node-red-contrib-nano-tts#readme",
+  "dependencies": {}
+}

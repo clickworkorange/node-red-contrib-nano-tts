@@ -1,0 +1,59 @@
+<script type="text/x-red" data-help-name="nano-tts">
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt>payload
+            <span class="property-type">string</span>
+        </dt>
+        <dd>The text to be turned into speech. This can include Pico TTS markup.</dd>
+        <dt class="optional">lang
+            <span class="property-type">string</span>
+        </dt>
+        <dd>The voice language to use. Must be one of <code>en-US</code>, <code>en-GB</code>, <code>de-DE</code>, <code>fr-FR</code>, <code>es-ES</code> or <code>it-IT</code> (defaults to <code>en-US</code>).</dd>
+        <dt class="optional">pitch
+            <span class="property-type">float</span>
+        </dt>
+        <dd>The voice pitch. Must be between 0.5 and 2.0 (defaults to 1).</dd>
+        <dt class="optional">speed
+            <span class="property-type">float</span>
+        </dt>
+        <dd>The voice speed. Must be between 0.2 and 5.0 (defaults to 1).</dd>
+        <dt class="optional">volume
+            <span class="property-type">float</span>
+        </dt>
+        <dd>The voice volume. Must be between 0.0 and 5.0 (defaults to 1). Values greater than 1 may lead to distortion.</dd>
+    </dl>
+    <h3>Outputs</h3>
+    <dl class="message-properties">
+        <dt>payload <span class="property-type">buffer | boolean</span></dt>
+        <dd>A raw PCM buffer when set to ouptut one, otherwise a boolean indicating success.</dd>
+        <dt>filename <span class="property-type">string</span></dt>
+        <dd>The full path to the generated file, when set to produce a WAV file.</dd>
+        <dt>filesize <span class="property-type">integer</span></dt>
+        <dd>The generated file's size in bytes, when set to produce a WAV file.</dd>
+    </dl>
+    <h3>Details</h3>
+    <p>This node uses the Pico TTS engine from SVOX to generate 16-bit 16kHz audio by reading out the <code>msg.payload</code> in US English, British English, German, French, Spanish or Italian voices.</p>
+    <p>The node can output a raw PCM buffer containing the audio, write the audio to a WAV file, or speak it directly through the default soundcard of the machine running Node-RED.</p>
+    <p>Messages can specify their own settings with <code>msg.lang</code>, <code>msg.pitch</code>, <code>msg.speed</code>, <code>msg.volume</code>.
+    <p><b>Note:</b> Note this.</p>
+    <h3>Markup</h3>
+    <p>The strings passed to this node may include Pico TTS specific markup, to affect particular properties of the speech generated. The below is only a brief summary of the most commonly used tags - see the Pico TTS manual for the full list and further details.<p>
+    <dl class="message-properties">
+        <dt>&lt;pitch&gt; <span class="property-type">&lt;pitch level="..."&gt; ... </pitch&gt;</span></dt>
+        <dd>Sets the pitch level for the enclosed block.</dd>
+        <dt>&lt;speed&gt; <span class="property-type">&lt;speed level="..."&gt; ... &lt;/speed&gt;</span></dt>
+        <dd>Sets the speed level for the enclosed block.</dd>
+        <dt>&lt;volume&gt; <span class="property-type">&lt;volume level="..."&gt; ... &lt;/volume&gt;</span></dt>
+        <dd>Sets the volume level for the enclosed block.</dd>
+        <dt>&lt;break&gt; <span class="property-type">&lt;break time="..."/&gt;</span></dt>
+        <dd>Inserts a pause with the duration specified by the <code>time</code> parameter (e.g. "1s" or "1000ms").</dd>
+        <dt>&lt;ignore&gt;<span class="property-type">&lt;ignore&gt; ... &lt;/ignore&gt;</span></dt>
+        <dd>Completely ignores the enclosed block (it will not be read out).</dd>
+        <dt>&lt;phoneme&gt; <span class="property-type">&lt;phoneme ph="..."/&gt;</span></dt>
+        <dd>Provides a phonemic or phonetic pronunciation for a word to be inserted into the text in the place of the markup. The value of <code>ph</code> should use the X-SAMPA phonetic alphabet to define the phoneme.</dd>
+        <dt>&lt;play&gt; <span class="property-type">&lt;play file="..."/&gt;<br/>&lt;play file="..."&gt; ... &lt;/play&gt;</span></dt>
+        <dd>In the first form, this will play an audio file at the position where the tag appears. In the second form the audio file will play instead of the enclosed block of text.</dd>
+    </dl>
+    <h3>References</h3>
+    https://github.com/gmn/nanotts
+</script>

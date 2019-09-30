@@ -1,0 +1,31 @@
+{
+    "nano-tts" : {
+        "action": "Action",
+        "wav": "WAV file",
+        "buffer": "PCM Buffer",
+        "playback": "Playback",
+        "name": "Name",
+        "lang": "Language",
+        "en-US": "American English [en-US]",
+        "en-GB": "British English [en-GB]",
+        "de-DE": "German [de-DE]",
+        "fr-FR": "French [fr-FR]",
+        "es-ES": "Spanish [es-ES]",
+        "it-IT": "Italian [it-IT]",
+        "label": {
+          "outdir": "Output to",
+          "tweaks": "Tweaks",
+          "pitch": "Pitch",
+          "speed": "Speed",
+          "volume": "Volume",
+          "name": "Name"
+        },
+        "placeholder": {
+          "pitch": "0.5-2.0",
+          "speed": "0.2-5.0",
+          "volume": "0.0-5.0",
+          "name": "Name"
+        },
+        "form-tip": "If you leave any of Language, Pitch, Speed or Volume blank, these can be supplied by setting the corresponding property on the message, e.g. msg.lang = \"de-DE\". Note that the maximum size of the PCM buffer output is 1Mb."
+    }
+}

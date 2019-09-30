@@ -1,0 +1,108 @@
+<script type="text/x-red" data-template-name="nano-tts">
+    <div class="form-row">
+        <label for="node-input-action"><i class="fa fa-tasks"></i> <span data-i18n="nano-tts.action"></span></label>
+        <select id="node-input-action" style="width:270px !important">
+            <option value="w" data-i18n="nano-tts.wav"></option>
+            <option value="c" data-i18n="nano-tts.buffer"></option>
+            <option value="p" data-i18n="nano-tts.playback"></option>
+        </select>
+    </div>
+    <br/>
+    <div class="form-row">
+        <label for="node-input-lang"><i class="fa fa-comment"></i> <span data-i18n="nano-tts.lang"></span></label>
+        <select id="node-input-lang" style="width:270px !important">
+            <option value=""></option>
+            <option value="en-US" data-i18n="nano-tts.en-US"></option>
+            <option value="en-GB" data-i18n="nano-tts.en-GB"></option>
+            <option value="de-DE" data-i18n="nano-tts.de-DE"></option>
+            <option value="fr-FR" data-i18n="nano-tts.fr-FR"></option>
+            <option value="es-ES" data-i18n="nano-tts.es-ES"></option>
+            <option value="it-IT" data-i18n="nano-tts.it-IT"></option>
+        </select>
+    </div>
+    <br/>
+    <div class="form-row cwo-cols">
+        <label><i class="fa fa-cog"></i> <span data-i18n="nano-tts.label.tweaks"></span></label>
+        <div>
+            <label for="node-input-pitch"><span data-i18n="nano-tts.label.pitch"></span></label><br/>
+            <input type="text" id="node-input-pitch" data-i18n="[placeholder]nano-tts.placeholder.pitch" style="text-align:end; width:60px !important"/>
+        </div>
+        <div>
+            <label for="node-input-speed"><span data-i18n="nano-tts.label.speed"></span></label><br/>
+            <input type="text" id="node-input-speed" data-i18n="[placeholder]nano-tts.placeholder.speed" style="text-align:end; width:60px !important"/>
+        </div>
+        <div>
+            <label for="node-input-volume"><span data-i18n="nano-tts.label.volume"></span></label><br/>
+            <input type="text" id="node-input-volume" data-i18n="[placeholder]nano-tts.placeholder.volume" style="text-align:end; width:60px !important"/>
+        </div>
+    </div>
+    <br/>
+    <div class="form-row" id="outdir">
+        <label for="node-input-outdir"><i class="fa fa-folder"></i> <span data-i18n="nano-tts.label.outdir"></span></label>
+        <input type="text" id="node-input-outdir" placeholder="/tmp"/>
+    </div>
+    <br/>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="nano-tts.label.name"></span></label>
+        <input type="text" id="node-input-name" data-i18n="[placeholder]nano-tts.placeholder.name"/>
+    </div>
+    <div class="form-tips" id="node-tip"><span data-i18n="nano-tts.form-tip"></span></div>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType("nano-tts", {
+        color: "#FFCC66",
+        category: "function",
+        inputs: 1,
+        outputs: 1,
+        icon: "font-awesome/fa-comment",
+        align: "right",
+        defaults: {
+            action: {value:"p",required:true},
+            lang: {value:"en-US"},
+            pitch: {value:1,validate:function(v) { return !v || (v >= 0.5 && v <= 2.0) }},
+            speed: {value:1,validate:function(v) { return !v || (v >= 0.2 && v <= 5.0) }},
+            volume:{value:1,validate:function(v) { return !v || (v >= 0.0 && v <= 5.0) }},
+            outdir: {value:""},
+            name: {value:""}
+        },
+        label: function() {
+            return this.name || "nano tts";
+        },
+        labelStyle: function() {
+            return this.name ? "node_label_italic" : "";
+        },
+        oneditprepare: function() {
+            $("#node-input-action").change();
+            $("#node-input-pitch").spinner({min:0.5,max:2.0,step:0.1});
+            $("#node-input-speed").spinner({min:0.2,max:5.0,step:0.1});
+            $("#node-input-volume").spinner({min:0.0,max:5.0,step:0.1});
+            //$("#node-input-outdir").attr("placeholder", ); //TODO: should be tempdir()
+            $("#node-input-action").change(function() {
+                var a = $(this).val();
+                $("#outdir").toggle(a == "w");
+            });
+            $(".ui-spinner-input").change(function() {
+                if($(this).val() && ($(this).val() < $(this).attr("aria-valuemin") || $(this).val() > $(this).attr("aria-valuemax"))) {
+                    $(this).parent().addClass("input-error");
+                } else {
+                    $(this).parent().removeClass("input-error");
+                }
+            });
+            $("#node-input-speed").spinner({min:0.2,max:5.0,step:0.1});
+            $("#node-input-volume").spinner({min:0.0,max:5.0,step:0.1});
+        }
+    });
+</script>
+
+<style>
+.cwo-cols {
+    overflow: auto;
+}
+    .cwo-cols > label, .cwo-cols > div {
+        float: left;
+    }
+    .cwo-cols > label {
+        margin-right: 1em;
+    }
+</style>
