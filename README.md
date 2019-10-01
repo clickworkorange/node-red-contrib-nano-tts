@@ -1,6 +1,7 @@
 # Node-RED nano-tts #
 
 **Very early stages - not ready for use!**
+See https://github.com/gmn/nanotts/issues/8
 
 ### Inputs ###
 + #### payload *string* #### 
