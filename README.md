@@ -31,19 +31,19 @@ Messages can specify their own settings with `msg.lang`, `msg.pitch`, `msg.speed
 
 ### Markup ###
 The strings passed to this node may include Pico TTS specific markup, to affect particular properties of the speech generated. The below is only a brief summary of the most commonly used tags - see the Pico TTS manual for the full list and further details.
-+ #### &lt;pitch&gt; *&lt;pitch level="..."&gt; ... &lt;/pitch&gt;* #### 
++ #### &lt;pitch level="..."&gt; ... &lt;/pitch&gt; #### 
     Sets the pitch level for the enclosed block.
-+ #### &lt;speed&gt; *&lt;speed level="..."&gt; ... &lt;/speed&gt;* #### 
++ #### &lt;speed level="..."&gt; ... &lt;/speed&gt; #### 
     Sets the speed level for the enclosed block.
-+ #### &lt;volume&gt; *&lt;volume level="..."&gt; ... &lt;/volume&gt;* #### 
++ #### &lt;volume level="..."&gt; ... &lt;/volume&gt; #### 
     Sets the volume level for the enclosed block.
-+ #### &lt;break&gt; *&lt;break time="..."/&gt;* #### 
++ #### &lt;break time="..."/&gt; #### 
     Inserts a pause with the duration specified by the `time` parameter (e.g. "1s" or "1000ms").
-+ #### &lt;ignore&gt;*&lt;ignore&gt; ... &lt;/ignore&gt;* #### 
++ #### &lt;ignore&gt; ... &lt;/ignore&gt; #### 
     Completely ignores the enclosed block (it will not be read out).
-+ #### &lt;phoneme&gt; *&lt;phoneme ph="..."/&gt;* #### 
++ #### &lt;phoneme ph="..."/&gt; #### 
     Provides a phonemic or phonetic pronunciation for a word to be inserted into the text in the place of the markup. The value of `ph` should use the X-SAMPA phonetic alphabet to define the phoneme.
-+ #### &lt;play&gt; *&lt;play file="..."/&gt; | &lt;play file="..."&gt; ... &lt;/play&gt;* #### 
++ #### &lt;play file="..."/&gt; | &lt;play file="..."&gt; ... &lt;/play&gt; #### 
     In the first form, this will play an audio file at the position where the tag appears. In the second form the audio file will play instead of the enclosed block of text.
 
 ### References ###
